@@ -55,7 +55,7 @@ $(function() {
       });
       // tests to ensure the .feed container has at least one entry
       it('calls loadFeed successfully', function(done) {
-        expect($('.feed').has('.entry')).toBeDefined();
+        expect($('.feed .entry').length).toBeGreaterThan(0);
         done();
       });
 
@@ -69,12 +69,11 @@ $(function() {
       beforeEach(function(done) {
         loadFeed(0, function() {
           feedBefore = $('h2').html();
-          done();
-        });
-        // calling loadFeed(1) and capturng feed
-        loadFeed(1, function() {
-          feedAfter = $('h2').html();
-          done();
+          // calling loadFeed(1) and capturng feed
+          loadFeed(1, function() {
+            feedAfter = $('h2').html();
+            done();
+          });
         });
       });
       //testing if content changed when new feed is chosen
